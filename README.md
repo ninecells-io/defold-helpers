@@ -1,6 +1,6 @@
 # defold-helpers
 
-## color_heper
+## color_helper
 
 Helper methods to cast and modify colors. Most operations require a color (table r, g, b 0..255 and a 0..1).
 
