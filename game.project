@@ -22,3 +22,6 @@ scale_mode = stretch
 [project]
 title = defold-helpers
 
+[library]
+include_dirs = defold_helpers
+
