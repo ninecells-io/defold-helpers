@@ -15,7 +15,7 @@ Helper methods to cast and modify colors. Most operations require a color (table
 
 ## gui_helper
 
-Methods to simplify using Defold the `gui` api.
+Methods to simplify using the Defold `gui` api.
 
 * `create_box_node`: Create a box or circle node with root node, size, position, and visibility.
 * `create_text_node`: Create a text node.
