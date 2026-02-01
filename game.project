@@ -23,5 +23,5 @@ scale_mode = stretch
 title = defold-helpers
 
 [library]
-include_dirs = defold_helpers
+include_dirs = helpers
 

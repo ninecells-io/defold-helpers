@@ -1,10 +1,10 @@
-local color_helper = require("defold_helpers.color_helper")
+local color_helper = require("helpers.color_helper")
 
 local M = {}
 
-function M.create_box_node(root, width, height, pos, pivot, visible, as_circle)
+function M.create_box_node(root, width, height, pos, pivot, visible, as_circle, inherit_alpha)
 
-	local container = (function()
+	local box = (function()
 		if as_circle or false then
 			return gui.new_pie_node(
 				vmath.vector3(),
@@ -18,25 +18,26 @@ function M.create_box_node(root, width, height, pos, pivot, visible, as_circle)
 		end
 	end)()
 
-	gui.set_pivot(container, pivot or gui.PIVOT_CENTER)
+	gui.set_pivot(box, pivot or gui.PIVOT_CENTER)
 	if pos then
-		gui.set_position(container, pos)
+		gui.set_position(box, pos)
 	end
 	
-	gui.set_size_mode(container, gui.SIZE_MODE_MANUAL)
-	gui.set_visible(container, visible == nil and true or visible)
-	gui.set_inherit_alpha(container, false)
-	gui.set_alpha(container, 1)
-	gui.set_blend_mode(container, gui.BLEND_ALPHA)
-	gui.set_parent(container, root, false)
+	gui.set_size_mode(box, gui.SIZE_MODE_MANUAL)
+	gui.set_visible(box, visible == nil and true or visible)
+	gui.set_inherit_alpha(box, inherit_alpha == nil and true or inherit_alpha)
+	gui.set_alpha(box, 1)
+	gui.set_blend_mode(box, gui.BLEND_ALPHA)
+	gui.set_parent(box, root)
 
-	return container
+	return box
 end
 
-function M.create_text_node(root, caption, size, text_color, font_name)
+function M.create_text_node(root, caption, size, text_color, font_name, visible, inherit_alpha)
 	local text = gui.new_text_node(vmath.vector3(), caption)
 	gui.set_parent(text, root, false)
-	gui.set_visible(text, true)
+	gui.set_visible(text, visible == nil and true or visible)
+	gui.set_inherit_alpha(text, inherit_alpha == nil and true or inherit_alpha)
 
 	gui.set_font(text, hash(font_name or "default"))
 
