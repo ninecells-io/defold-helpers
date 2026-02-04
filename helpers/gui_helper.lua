@@ -43,7 +43,7 @@ function M.create_text_node(root, caption, size, text_color, font, position, vis
 	gui.set_color(text, text_color and color_helper.to_vector(text_color) or vmath.vector4(0, 0, 0, 1))
 	local scale = 1
 	if size then
-		scale = size / font.height
+		scale = size / font.size
 		gui.set_scale(text, vmath.vector3(scale, scale, 1))
 	end
 	
