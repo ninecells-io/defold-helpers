@@ -38,8 +38,4 @@ function M.spairs(t, order)
 	end
 end
 
-function M.string_starts_with(s, sub)
-	return string.sub(s, 1, string.len(sub)) == sub
-end
-
 return M
