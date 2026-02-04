@@ -33,18 +33,17 @@ function M.create_box_node(root, width, height, pos, pivot, visible, as_circle, 
 	return box
 end
 
-function M.create_text_node(root, caption, size, text_color, font_name, position, visible, inherit_alpha)
+function M.create_text_node(root, caption, size, text_color, font, position, visible, inherit_alpha)
 	local text = gui.new_text_node(vmath.vector3(), caption)
 	gui.set_parent(text, root, false)
 	gui.set_visible(text, visible == nil and true or visible)
 	gui.set_inherit_alpha(text, inherit_alpha == nil and true or inherit_alpha)
 	gui.set_position(text, position or vmath.vector3())
-	gui.set_font(text, hash(font_name or "default"))
+	gui.set_font(text, font.name)
 	gui.set_color(text, text_color and color_helper.to_vector(text_color) or vmath.vector4(0, 0, 0, 1))
 	local scale = 1
 	if size then
-		local s = gui.get_size(text)
-		scale = size / s.y
+		scale = size / font.height
 		gui.set_scale(text, vmath.vector3(scale, scale, 1))
 	end
 	
