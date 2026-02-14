@@ -25,6 +25,7 @@ function M.create_box_node(root, width, height, pos, pivot, visible, as_circle, 
 	
 	gui.set_size_mode(box, gui.SIZE_MODE_MANUAL)
 	gui.set_visible(box, visible == nil and true or visible)
+	gui.set_euler(box, vmath.vector3())
 	gui.set_inherit_alpha(box, inherit_alpha == nil and true or inherit_alpha)
 	gui.set_alpha(box, 1)
 	gui.set_blend_mode(box, gui.BLEND_ALPHA)
@@ -33,7 +34,7 @@ function M.create_box_node(root, width, height, pos, pivot, visible, as_circle, 
 	return box
 end
 
-function M.create_text_node(root, caption, size, text_color, font, position, visible, inherit_alpha)
+function M.create_text_node(root, caption, size, text_color, font, position, visible, inherit_alpha, pivot)
 	local text = gui.new_text_node(vmath.vector3(), caption)
 	gui.set_parent(text, root, false)
 	gui.set_visible(text, visible == nil and true or visible)
@@ -41,6 +42,8 @@ function M.create_text_node(root, caption, size, text_color, font, position, vis
 	gui.set_position(text, position or vmath.vector3())
 	gui.set_font(text, font.name)
 	gui.set_color(text, text_color and color_helper.to_vector(text_color) or vmath.vector4(0, 0, 0, 1))
+	gui.set_euler(text, vmath.vector3())
+	gui.set_pivot(text, pivot or gui.PIVOT_CENTER)
 	local scale = 1
 	if size then
 		scale = size / font.size
