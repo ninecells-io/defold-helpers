@@ -34,16 +34,16 @@ local function normalize_alpha(a)
 end
 
 local function get_rgb(c)
-	-- Accept {r=,g=,b=} or {r,g,b}
-	local r = (c and (c.r or c[1])) or 0
-	local g = (c and (c.g or c[2])) or 0
-	local b = (c and (c.b or c[3])) or 0
+	-- Accept {r=,g=,b=} or {x=r, y=g, z=b} or {r,g,b}
+	local r = (c and (c.x or c.r or c[1])) or 0
+	local g = (c and (c.y or c.g or c[2])) or 0
+	local b = (c and (c.z or c.b or c[3])) or 0
 	return normalize_rgb(r, g, b)
 end
 
 local function get_rgba(c)
 	local r, g, b = get_rgb(c)
-	local a = normalize_alpha(c and c.a)
+	local a = normalize_alpha(c and (c.w or c.a))
 	return r, g, b, a
 end
 
