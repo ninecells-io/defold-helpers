@@ -1,10 +1,14 @@
 local M = {}
 
 function M.merge(t1, t2)
-	for k, v in pairs(t2) do
-		t1[k] = v
+	local merged = {}
+	for k, v in pairs(t1) do
+		merged[k] = v
 	end
-	return t1
+	for k, v in pairs(t2) do
+		merged[k] = v
+	end
+	return merged
 end
 
 function M.map(tbl, f)
